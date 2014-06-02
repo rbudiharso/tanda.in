@@ -17,6 +17,19 @@ function (Dropbox) {
         return DbClient.isAuthenticated();
     };
 
+    Client.authenticate = function (errorCallback) {
+        errorCallback = errorCallback || function () {};
+
+        DbClient.authenticate({interactive: true}, function (error) {
+            return errorCallback.call(DbClient, error);
+        });
+
+        DbClient.authenticate();
+    };
+
+    Client.isAuthenticated = function () {
+        return DbClient.isAuthenticated();
+    };
 
     return Client;
 });

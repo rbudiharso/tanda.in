@@ -1,3 +1,4 @@
+
 /*global require*/
 'use strict';
 
@@ -25,19 +26,16 @@ require.config({
 });
 
 require([
-    'backbone',
     'domready',
-    './routes/app',
     './dropbox_client'
-], function (Backbone, domReady, AppRouter, Client) {
+], function (domReady, Client) {
     domReady(function () {
         Client.authenticate(function (error) {
             if (error) alert('Authentication error: ' + error);
         });
 
-        if (Client.isAuthenticated()) window.location.assign('/bookmarks.html');
+        if (!Client.isAuthenticated()) {
+            window.location.assign('/index.html');
+        }
     });
-
-    new AppRouter();
-    Backbone.history.start();
 });
