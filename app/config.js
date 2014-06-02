@@ -1,7 +1,7 @@
-/*global require*/
 'use strict';
 
 require.config({
+    baseUrl: '/scripts',
     shim: {
         bootstrap: {
             deps: ['jquery'],
@@ -9,6 +9,9 @@ require.config({
         },
         dropbox: {
             exports: 'Dropbox'
+        },
+        backbone: {
+            exports: 'Backbone'
         }
     },
     paths: {
@@ -22,19 +25,4 @@ require.config({
         'backbone.wreqr' : '../bower_components/backbone.wreqr/lib/backbone.wreqr',
         'backbone.babysitter' : '../bower_components/backbone.babysitter/lib/backbone.babysitter'
     }
-});
-
-require([
-    'domready',
-    './dropbox_client'
-], function (domReady, Client) {
-    domReady(function () {
-        Client.authenticate(function (error) {
-            if (error) alert('Authentication error: ' + error);
-        });
-
-        if (Client.isAuthenticated()) window.location.assign('/bookmarks.html');
-
-        Client.authenticate();
-    });
 });

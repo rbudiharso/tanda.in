@@ -10,9 +10,9 @@ define([
     var AppRouter = Marionette.AppRouter.extend({
         controller: AppController,
         appRoutes: {
-            "": "home",
-            "about": "about",
-            "contact": "contact"
+            '': 'home',
+            'about': 'about',
+            'contact': 'contact'
         }
     });
 

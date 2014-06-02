@@ -14,7 +14,7 @@ define([
         template: JST['app/scripts/templates/navigation.ejs'],
 
         itemViewContainer: function () {
-            return "ul.nav";
+            return 'ul.nav';
         },
 
         itemView: NavItemView

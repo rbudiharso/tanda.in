@@ -25,7 +25,7 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView) {
     function showNav (nav, activeNav) {
         navs.reset(navigations[nav]);
         navs.get(activeNav).set('active', true);
-    };
+    }
 
     function showLayout () {
         if (!layoutView) {
@@ -38,7 +38,7 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView) {
             collection: navs
         });
         layoutView.header.show(navigationView);
-    };
+    }
 
     Controller.home = function () {
         showNav('home', 'home');

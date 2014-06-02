@@ -153,28 +153,77 @@ module.exports = function (grunt) {
             dist: {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
+                    //mainConfigFile : '<%= yeoman.app %>/scripts/config.js',
+                    enforceDefine: true,
                     baseUrl: '<%= yeoman.app %>/scripts',
                     optimize: 'none',
+                    removeCombined: true,
+                    shim: {
+                        bootstrap: {
+                            deps: ['jquery'],
+                            exports: 'jquery'
+                        },
+                        dropbox: {
+                            exports: 'Dropbox'
+                        }
+                    },
                     paths: {
                         'templates': '../../.tmp/scripts/templates',
                         'jquery': '../../<%= yeoman.app %>/bower_components/jquery/dist/jquery',
+                        'bootstrap': '../../<%= yeoman.app %>/bower_components/sass-bootstrap/dist/js/bootstrap',
                         'underscore': '../../<%= yeoman.app %>/bower_components/underscore/underscore',
-                        'backbone': '../../<%= yeoman.app %>/bower_components/backbone/backbone'
+                        'backbone': '../../<%= yeoman.app %>/bower_components/backbone/backbone',
+                        'domready': '../../<%= yeoman.app %>/bower_components/requirejs-domready/domReady',
+                        'marionette': '../../<%= yeoman.app %>/bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
+                        'backbone.wreqr' : '../../<%= yeoman.app %>/bower_components/backbone.wreqr/lib/backbone.wreqr',
+                        'backbone.babysitter' : '../../<%= yeoman.app %>/bower_components/backbone.babysitter/lib/backbone.babysitter',
+                        'dropbox': 'empty:',
+                        'dropbox_client': '../../<%= yeoman.app %>/scripts/dropbox_client',
                     },
-                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
-                    // https://github.com/yeoman/grunt-usemin/issues/30
-                    //generateSourceMaps: true,
-                    // required to support SourceMaps
-                    // http://requirejs.org/docs/errors.html#sourcemapcomments
                     preserveLicenseComments: false,
                     useStrict: true,
-                    wrap: true
-                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                    wrap: {
+                        start: "(function() {",
+                        end: "}).call(window);"
+                    },
+                    dir: '<%= yeoman.dist %>/scripts',
+                    modules: [
+                        {
+                            name: 'config',
+                            include: [
+                                'jquery',
+                                'underscore',
+                                'backbone',
+                                'marionette',
+                                'domready',
+                                'bootstrap',
+                                'backbone.wreqr',
+                                'backbone.babysitter',
+                                'templates'
+                            ]
+                        },
+                        {
+                            name: 'main/app',
+                            exclude: ['config']
+                        },
+                        {
+                            name: 'main/authenticate',
+                            exclude: ['config']
+                        },
+                        {
+                            name: 'main/bookmark',
+                            exclude: ['config']
+                        }
+                    ]
                 }
             }
         },
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: [
+                '<%= yeoman.app %>/index.html',
+                '<%= yeoman.app %>/authenticate.html',
+                '<%= yeoman.app %>/bookmarks.html'
+            ],
             options: {
                 dest: '<%= yeoman.dist %>'
             }
@@ -251,7 +300,10 @@ module.exports = function (grunt) {
         },
         jst: {
             options: {
-                amd: true
+                amd: true,
+                templateSettings: {
+                    variable: 'data'
+                }
             },
             compile: {
                 files: {
