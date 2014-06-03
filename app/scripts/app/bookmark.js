@@ -12,5 +12,10 @@ require([
         if (!Client.isAuthenticated()) {
             window.location.assign('/index.html');
         }
+
+        Client.DbClient.getAccountInfo(function (error, account) {
+            console.log(account);
+        });
+
     });
 });
