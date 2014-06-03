@@ -203,15 +203,15 @@ module.exports = function (grunt) {
                             ]
                         },
                         {
-                            name: 'main/app',
+                            name: 'app/home',
                             exclude: ['config']
                         },
                         {
-                            name: 'main/authenticate',
+                            name: 'app/authenticate',
                             exclude: ['config']
                         },
                         {
-                            name: 'main/bookmark',
+                            name: 'app/bookmark',
                             exclude: ['config']
                         }
                     ]
