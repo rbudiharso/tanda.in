@@ -20,14 +20,20 @@ define([
         },
 
         onRoute: function (name, path) {
-            if (Client.isAuthenticated() && name === 'home' ) {
-                this.navigate('bookmarks', true)
-            }
+            if (Client.isAuthenticated()) {
+                if (name === 'home' ) {
+                    this.navigate('bookmarks', true)
+                }
 
-            if (Client.isAuthenticated() && name === 'signout' ) {
-                Client.DbClient.signOut(function () {
+                if (name === 'signout' ) {
+                    Client.DbClient.signOut(function () {
+                        this.navigate('', true)
+                    }.bind(this));
+                }
+            } else {
+                if (name === 'bookmarks' || name === 'account' ) {
                     this.navigate('', true)
-                }.bind(this));
+                }
             }
         }
     });
