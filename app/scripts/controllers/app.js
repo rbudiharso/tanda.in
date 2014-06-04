@@ -21,6 +21,11 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView, AboutVi
             { href: '#', title: 'Home', id: 'home' },
             { href: '#about', title: 'About', id: 'about' },
             { href: '#contact', title: 'Contact', id: 'contact' }
+        ],
+        bookmarks: [
+            { href: '#bookmarks', title: 'Bookmarks', id: 'bookmarks' },
+            { href: '#account', title: 'My Account', id: 'account' },
+            { href: '#signout', title: 'Sign Out', id: 'signout' }
         ]
     };
 
@@ -61,7 +66,16 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView, AboutVi
         layoutView.content.show(view);
     };
 
-    Controller.bookmark = function () {
+    Controller.bookmarks = function () {
+        showNav('bookmarks', 'bookmarks');
+    };
+
+    Controller.account = function () {
+        showNav('bookmarks', 'account');
+    };
+
+    Controller.signout = function () {
+        showNav('bookmarks', 'signout');
     };
 
     return Controller;
