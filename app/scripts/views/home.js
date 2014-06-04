@@ -5,15 +5,23 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    'templates'
-], function ($, _, Backbone, Marionette, JST) {
+    'templates',
+    '../dropbox_client'
+], function ($, _, Backbone, Marionette, JST, Client) {
     'use strict';
 
-    var HomeView = Marionette.ItemView.extend({
+    return Marionette.ItemView.extend({
         template: JST['app/scripts/templates/home.ejs'],
 
         className: 'jumbotron',
-    });
 
-    return HomeView;
+        events: {
+            'click .connect': 'connect'
+        },
+
+        connect: function (evt) {
+            evt.preventDefault();
+            Client.DbClient.authenticate();
+        }
+    });
 });

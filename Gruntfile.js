@@ -153,8 +153,6 @@ module.exports = function (grunt) {
             dist: {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
-                    //mainConfigFile : '<%= yeoman.app %>/scripts/config.js',
-                    enforceDefine: true,
                     baseUrl: '<%= yeoman.app %>/scripts',
                     optimize: 'none',
                     removeCombined: true,
@@ -185,36 +183,7 @@ module.exports = function (grunt) {
                     wrap: {
                         start: "(function() {",
                         end: "}).call(window);"
-                    },
-                    dir: '<%= yeoman.dist %>/scripts',
-                    modules: [
-                        {
-                            name: 'config',
-                            include: [
-                                'jquery',
-                                'underscore',
-                                'backbone',
-                                'marionette',
-                                'domready',
-                                'bootstrap',
-                                'backbone.wreqr',
-                                'backbone.babysitter',
-                                'templates'
-                            ]
-                        },
-                        {
-                            name: 'app/home',
-                            exclude: ['config']
-                        },
-                        {
-                            name: 'app/authenticate',
-                            exclude: ['config']
-                        },
-                        {
-                            name: 'app/bookmark',
-                            exclude: ['config']
-                        }
-                    ]
+                    }
                 }
             }
         },

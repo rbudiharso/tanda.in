@@ -1,7 +1,12 @@
 'use strict';
 
+var protocol = window.location.protocol;
+var hostname = window.location.hostname;
+if (protocol != "https:" && hostname !== 'localhost') {
+    window.location.assign("https:" + window.location.href.substring(protocol.length));
+}
+
 require.config({
-    baseUrl: '/scripts',
     shim: {
         bootstrap: {
             deps: ['jquery'],
@@ -23,3 +28,22 @@ require.config({
         'backbone.babysitter' : '../bower_components/backbone.babysitter/lib/backbone.babysitter'
     }
 });
+
+require([
+    'backbone',
+    'domready',
+    'routes/app',
+    'dropbox_client'
+], function (Backbone, domReady, AppRouter, Client) {
+    Client.DbClient.authenticate({interactive: false}, function (error) {
+        if (error) { console.log('Error '+error); }
+    });
+
+    if (Client.DbClient.isAuthenticated()) { window.location.assign('/#bookmarks'); }
+
+    domReady(function () {
+        new AppRouter();
+        Backbone.history.start();
+    });
+});
+

@@ -6,9 +6,11 @@ define([
     'marionette',
     '../views/layout',
     '../views/navigation',
-    '../views/home'
+    '../views/home',
+    '../views/about',
+    '../views/contact'
 ],
-function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView) {
+function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView, AboutView, ContactView) {
     var Controller = {};
     var layoutView;
     var navigationView;
@@ -25,6 +27,7 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView) {
     function showNav (nav, activeNav) {
         navs.reset(navigations[nav]);
         navs.get(activeNav).set('active', true);
+        showLayout();
     }
 
     function showLayout () {
@@ -42,19 +45,23 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView) {
 
     Controller.home = function () {
         showNav('home', 'home');
-        showLayout();
         var view = new HomeView();
         layoutView.content.show(view);
     };
 
     Controller.about = function () {
         showNav('home', 'about');
-        showLayout();
+        var view = new AboutView();
+        layoutView.content.show(view);
     };
 
     Controller.contact = function () {
         showNav('home', 'contact');
-        showLayout();
+        var view = new ContactView();
+        layoutView.content.show(view);
+    };
+
+    Controller.bookmark = function () {
     };
 
     return Controller;

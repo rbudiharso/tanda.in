@@ -12,7 +12,8 @@ define([
         appRoutes: {
             '': 'home',
             'about': 'about',
-            'contact': 'contact'
+            'contact': 'contact',
+            'bookmark': 'bookmark'
         }
     });
 
