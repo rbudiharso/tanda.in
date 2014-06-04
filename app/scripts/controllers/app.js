@@ -1,16 +1,17 @@
 'use strict';
 
-define([
-    'jquery',
-    'backbone',
-    'marionette',
-    '../views/layout',
-    '../views/navigation',
-    '../views/home',
-    '../views/about',
-    '../views/contact'
-],
-function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView, AboutView, ContactView) {
+define(function (require) {
+    var $ = require('jquery');
+    var Backbone = require('backbone');
+    var Marionette = require('marionette');
+    var LayoutView = require('../views/layout');
+    var NavigationView = require('../views/navigation');
+    var HomeView = require('../views/home');
+    var AboutView = require('../views/about');
+    var ContactView = require('../views/contact');
+    var BookmarksView = require('../views/bookmarks');
+    var AccountView = require('../views/account');
+
     var Controller = {};
     var layoutView;
     var navigationView;
@@ -68,10 +69,14 @@ function ($, Backbone, Marionette, LayoutView, NavigationView, HomeView, AboutVi
 
     Controller.bookmarks = function () {
         showNav('bookmarks', 'bookmarks');
+        var view = new BookmarksView();
+        layoutView.content.show(view);
     };
 
     Controller.account = function () {
         showNav('bookmarks', 'account');
+        var view = new AccountView();
+        layoutView.content.show(view);
     };
 
     Controller.signout = function () {
