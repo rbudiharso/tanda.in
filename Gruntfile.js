@@ -27,6 +27,19 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+        ftpush: {
+            build: {
+                auth: {
+                    host: 'ftp.budiharso.info',
+                    port: 21,
+                    authKey: 'tandain'
+                },
+                src: 'dist',
+                dest: '/',
+                simple: true,
+                exclusions: ['**.DS_Store']
+            }
+        },
         watch: {
             options: {
                 nospawn: true,
@@ -373,5 +386,10 @@ module.exports = function (grunt) {
         'jshint',
         'test',
         'build'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'build',
+        'ftpush'
     ]);
 };
