@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 src: 'dist',
                 dest: '/',
                 simple: true,
-                exclusions: ['**.DS_Store']
+                exclusions: ['.DS_Store', '**.DS_Store']
             }
         },
         watch: {
