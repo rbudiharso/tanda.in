@@ -4,6 +4,7 @@ define(function (require) {
     var $ = require('jquery');
     var Backbone = require('backbone');
     var Marionette = require('marionette');
+    var Client = require('../dropbox_client');
     var LayoutView = require('../views/layout');
     var NavigationView = require('../views/navigation');
     var HomeView = require('../views/home');
@@ -11,6 +12,7 @@ define(function (require) {
     var ContactView = require('../views/contact');
     var BookmarksView = require('../views/bookmarks');
     var AccountView = require('../views/account');
+    var BookmarkModel = require('../models/bookmark');
 
     var Controller = {};
     var layoutView;
@@ -69,7 +71,12 @@ define(function (require) {
 
     Controller.bookmarks = function () {
         showNav('bookmarks', 'bookmarks');
-        var view = new BookmarksView();
+        var model = new BookmarkModel(null, {
+            client: Client.DbClient
+        });
+        var view = new BookmarksView({
+            model: model
+        });
         layoutView.content.show(view);
     };
 
