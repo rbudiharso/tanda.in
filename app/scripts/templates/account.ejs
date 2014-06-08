@@ -1,1 +1,26 @@
-<h1>Account</h1>
+<h1>My Dropbox Account</h1>
+<% if (!data.uid) { %>
+    <div class="loader">Loading...</div>
+<% } else { %>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <p>Name</p>
+        </div>
+        <div class="col-md-10">
+            <p><%= data.name %></p>
+        </div>
+        <div class="col-md-2">
+            <p>Email</p>
+        </div>
+        <div class="col-md-10">
+            <p><%= data.email %></p>
+        </div>
+        <div class="col-md-2">
+            <p>Referral URL</p>
+        </div>
+        <div class="col-md-10">
+            <p><a href="<%= data.referralUrl %>"><%= data.referralUrl %></a></p>
+        </div>
+    </div>
+<% } %>

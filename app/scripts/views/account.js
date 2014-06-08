@@ -11,5 +11,11 @@ define([
 
     return Marionette.ItemView.extend({
         template: JST['app/scripts/templates/account.ejs'],
+
+        initialize: function (attributes, options) {
+            this.model.fetch();
+
+            this.listenTo(this.model, 'change', this.render);
+        }
     });
 });

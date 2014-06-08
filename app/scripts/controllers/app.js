@@ -13,6 +13,7 @@ define(function (require) {
     var BookmarksView = require('../views/bookmarks');
     var AccountView = require('../views/account');
     var BookmarkModel = require('../models/bookmark');
+    var AccountModel = require('../models/account');
     var BookmarksCollection = require('../collections/bookmarks');
 
     var Controller = {};
@@ -83,7 +84,8 @@ define(function (require) {
 
     Controller.account = function () {
         showNav('bookmarks', 'account');
-        var view = new AccountView();
+        var accountModel = new AccountModel();
+        var view = new AccountView({ model: accountModel });
         layoutView.content.show(view);
     };
 
