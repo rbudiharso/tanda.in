@@ -6,10 +6,6 @@ define(function (require) {
     var Backbone = require('backbone');
 
     Backbone.sync = (function (method, model, options) {
-        console.log(method);
-        console.log(model);
-        //console.log(options);
-
         var client = model.client || model.collection.client;
         if (!client) { throw new Error('Dropbox.Client not supplied'); }
 

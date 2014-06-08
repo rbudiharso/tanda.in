@@ -26,7 +26,7 @@ define([
                 }
 
                 if (name === 'signout' ) {
-                    Client.DbClient.signOut(function () {
+                    Client.signOut(function () {
                         this.navigate('', true)
                     }.bind(this));
                 }

@@ -37,11 +37,11 @@ require([
     'routes/app',
     'dropbox_client'
 ], function (Backbone, domReady, AppRouter, Client) {
-    Client.DbClient.authenticate({interactive: false}, function (error) {
+    Client.authenticate({interactive: false}, function (error) {
         if (error) { console.log('Error '+error); }
     });
 
-    if (Client.DbClient.isAuthenticated()) { window.location.assign('/#bookmarks'); }
+    if (Client.isAuthenticated()) { window.location.assign('/#bookmarks'); }
 
     domReady(function () {
         new AppRouter();

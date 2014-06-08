@@ -73,7 +73,7 @@ define(function (require) {
     Controller.bookmarks = function () {
         showNav('bookmarks', 'bookmarks');
         var bookmarks = new BookmarksCollection([], {
-            client: Client.DbClient
+            client: Client
         });
         var view = new BookmarksView({
             collection: bookmarks

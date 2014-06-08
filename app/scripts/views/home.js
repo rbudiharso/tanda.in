@@ -21,7 +21,7 @@ define([
 
         connect: function (evt) {
             evt.preventDefault();
-            Client.DbClient.authenticate();
+            Client.authenticate();
         }
     });
 });
