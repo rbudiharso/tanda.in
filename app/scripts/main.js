@@ -26,7 +26,8 @@ require.config({
         marionette: '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',
         'backbone.wreqr' : '../bower_components/backbone.wreqr/lib/backbone.wreqr',
         'backbone.babysitter' : '../bower_components/backbone.babysitter/lib/backbone.babysitter',
-        dropbox_datastore: './models/dropbox_datastore'
+        xdomainajax: './jquery.xdomainajax',
+        dropbox_sync: './dropbox_sync'
     }
 });
 

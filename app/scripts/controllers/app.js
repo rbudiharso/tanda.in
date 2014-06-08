@@ -13,6 +13,7 @@ define(function (require) {
     var BookmarksView = require('../views/bookmarks');
     var AccountView = require('../views/account');
     var BookmarkModel = require('../models/bookmark');
+    var BookmarksCollection = require('../collections/bookmarks');
 
     var Controller = {};
     var layoutView;
@@ -71,11 +72,11 @@ define(function (require) {
 
     Controller.bookmarks = function () {
         showNav('bookmarks', 'bookmarks');
-        var model = new BookmarkModel(null, {
+        var bookmarks = new BookmarksCollection([], {
             client: Client.DbClient
         });
         var view = new BookmarksView({
-            model: model
+            collection: bookmarks
         });
         layoutView.content.show(view);
     };

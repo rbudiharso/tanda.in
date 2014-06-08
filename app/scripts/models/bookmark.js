@@ -3,16 +3,15 @@
 define([
     'underscore',
     'backbone',
-    'dropbox_datastore'
-], function (_, Backbone, Datastore) {
+    'dropbox_sync'
+], function (_, Backbone) {
     'use strict';
 
-    return Datastore.extend({
+    return Backbone.Model.extend({
         initialize: function(attributes, options) {
             this.client = options.client;
+            this.datastoreTable = 'bookmarks';
         },
-
-        tableName: 'bookmarks',
 
         defaults: {
             url: '',
@@ -21,9 +20,5 @@ define([
 
         validate: function(attrs, options) {
         },
-
-        parse: function(response, options)  {
-            return response;
-        }
     });
 });

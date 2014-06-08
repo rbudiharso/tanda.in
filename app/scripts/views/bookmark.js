@@ -10,16 +10,16 @@ define([
     'use strict';
 
     return Marionette.ItemView.extend({
-        template: JST['app/scripts/templates/nav_item.ejs'],
+        template: JST['app/scripts/templates/bookmark.ejs'],
 
         tagName: 'li',
 
-        className: function () {
-            return this.model.get('active') ? 'active' : '';
+        events: {
+            'click .delete': 'deleteBookmark'
         },
 
-        initialize: function () {
-            this.listenTo(this.model, 'change:active', this.render);
+        deleteBookmark: function () {
+            this.model.destroy();
         }
     });
 });
