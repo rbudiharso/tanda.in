@@ -10,6 +10,13 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
+        <script>
+            var protocol = window.location.protocol;
+            var hostname = window.location.hostname;
+            if (protocol != "https:" && hostname !== 'localhost') {
+                window.location.assign("https:" + window.location.href.substring(protocol.length));
+            }
+        </script>
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->

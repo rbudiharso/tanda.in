@@ -1,11 +1,5 @@
 'use strict';
 
-var protocol = window.location.protocol;
-var hostname = window.location.hostname;
-if (protocol != "https:" && hostname !== 'localhost') {
-    window.location.assign("https:" + window.location.href.substring(protocol.length));
-}
-
 require.config({
     shim: {
         bootstrap: {
